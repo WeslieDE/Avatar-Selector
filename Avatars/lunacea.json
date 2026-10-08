@@ -6,7 +6,9 @@
     "pc",
     "quest"
   ],
-  "tags": [],
+  "tags": [
+    "Demo"
+  ],
   "description": "",
   "added": ""
 }

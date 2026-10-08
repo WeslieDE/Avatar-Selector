@@ -5,7 +5,9 @@
   "platforms": [
     "pc"
   ],
-  "tags": [],
+  "tags": [
+    "Demo"
+  ],
   "description": "",
   "added": ""
 }
