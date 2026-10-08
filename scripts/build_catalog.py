@@ -26,7 +26,7 @@ MAX_ATLASES = 50
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 AVATAR_ID = re.compile(r"^avtr_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 PLATFORMS = {"pc", "quest", "ios"}
-TAGS = ["Demo", "Chibi", "Human"]  # filter categories shown in the world
+TAGS = ["Demo", "Chibi", "Human", "Optimiert", "Fun"]  # filter categories shown in the world
 BACKGROUND = (255, 246, 230)  # board cream, shows in empty cells
 
 
