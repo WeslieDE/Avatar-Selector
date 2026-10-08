@@ -11,11 +11,13 @@ Datenquelle für den VRChat-Avatar-Katalog (Udon: `VRCStringDownloader` + `VRCIm
      "creator": "あまとうさぎ",
      "id": "avtr_xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
      "platforms": ["pc", "quest"],
+     "tags": ["Chibi"],
      "description": "",
      "added": "2026-10-08"
    }
    ```
    - `name` ist Pflicht. Ohne gültige `id` wird der Avatar angezeigt, kann aber nicht angezogen werden.
+   - `tags`: optional, erlaubt sind `Demo`, `Chibi`, `Human` (Filter in der Welt). Unbekannte Tags werden ignoriert.
    - `added` (ISO-Datum, optional) bestimmt die Reihenfolge: neueste zuerst, Einträge ohne Datum danach alphabetisch.
 2. Bild mit **demselben Dateinamen** nach `Images/<name>.jpg|png|webp` legen.
    Fehlt das Bild oder die JSON, wird der Eintrag übersprungen (Warnung im Action-Log).

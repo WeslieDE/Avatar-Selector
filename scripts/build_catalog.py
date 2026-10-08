@@ -26,6 +26,7 @@ MAX_ATLASES = 20
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 AVATAR_ID = re.compile(r"^avtr_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 PLATFORMS = {"pc", "quest", "ios"}
+TAGS = ["Demo", "Chibi", "Human"]  # filter categories shown in the world
 BACKGROUND = (255, 246, 230)  # board cream, shows in empty cells
 
 
@@ -82,6 +83,13 @@ def load_entries(avatars_dir: Path, images_dir: Path):
         if not avatar_id:
             warn(f"'{key}': no avatar id yet (entry is shown but cannot be worn)")
         platforms = [p for p in (str(x).lower() for x in data.get("platforms", ["pc"])) if p in PLATFORMS] or ["pc"]
+        tags = []
+        for t in data.get("tags", []) or []:
+            match = next((x for x in TAGS if x.lower() == str(t).strip().lower()), None)
+            if match is None:
+                warn(f"'{key}': unknown tag '{t}' ignored (allowed: {', '.join(TAGS)})")
+            elif match not in tags:
+                tags.append(match)
 
         entries.append({
             "key": key,
@@ -89,6 +97,7 @@ def load_entries(avatars_dir: Path, images_dir: Path):
             "creator": str(data.get("creator", "")).strip(),
             "id": avatar_id,
             "platforms": platforms,
+            "tags": tags,
             "description": str(data.get("description", "")).strip(),
             "added": str(data.get("added", "")).strip(),
             "_image": img,
@@ -146,6 +155,7 @@ def build(avatars_dir: Path, images_dir: Path, out: Path):
         "cellHeight": CELL_H,
         "perAtlas": PER_ATLAS,
         "atlasCount": atlas_count,
+        "tags": TAGS,
         "atlases": [atlas_url(i) for i in range(atlas_count)],
         "avatars": avatars,
     }
