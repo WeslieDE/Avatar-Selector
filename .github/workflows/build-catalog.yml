@@ -7,6 +7,7 @@ on:
       - "Avatars/**"
       - "Images/**"
       - "scripts/**"
+      - "tags.json"
       - ".github/workflows/build-catalog.yml"
   workflow_dispatch:
 
@@ -34,7 +35,7 @@ jobs:
         run: pip install "Pillow==11.0.0"
 
       - name: Build avatars.json + atlas textures
-        run: python scripts/build_catalog.py --avatars Avatars --images Images --out _site
+        run: python scripts/build_catalog.py --avatars Avatars --images Images --tags tags.json --out _site
 
       - name: Add index page
         run: |

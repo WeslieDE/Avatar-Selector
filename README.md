@@ -17,7 +17,8 @@ Datenquelle für den VRChat-Avatar-Katalog (Udon: `VRCStringDownloader` + `VRCIm
    }
    ```
    - `name` ist Pflicht. Ohne gültige `id` wird der Avatar angezeigt, kann aber nicht angezogen werden.
-   - `tags`: optional, erlaubt sind `Demo`, `Chibi`, `Human`, `Optimiert`, `Fun` (Filter in der Welt). Unbekannte Tags werden ignoriert.
+   - `tags`: optional, erlaubt sind die Tags aus `tags.json` (gepflegt über die Admin-Website). Unbekannte Tags werden ignoriert.
+     Im Katalog (und damit im Board-Filter) erscheinen nur Tags, die mindestens ein Avatar nutzt – höchstens 12.
    - `added` (ISO-Datum, optional) bestimmt die Reihenfolge: neueste zuerst, Einträge ohne Datum danach alphabetisch.
 2. Bild mit **demselben Dateinamen** nach `Images/<name>.jpg|png|webp` legen.
    Fehlt das Bild oder die JSON, wird der Eintrag übersprungen (Warnung im Action-Log).

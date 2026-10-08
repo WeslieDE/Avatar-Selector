@@ -26,7 +26,23 @@ MAX_ATLASES = 50
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 AVATAR_ID = re.compile(r"^avtr_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 PLATFORMS = {"pc", "quest", "ios"}
-TAGS = ["Demo", "Chibi", "Human", "Optimiert", "Fun"]  # filter categories shown in the world
+MAX_WORLD_TAGS = 12  # filter rows the in-world board has
+TAGS = []  # tag registry, loaded from tags.json (managed by the admin website)
+
+
+def load_tags(path: Path):
+    """tags.json = ordered list of allowed tag names."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as e:
+        warn(f"{path}: cannot read tag list ({e}); no tags will be used")
+        return []
+    out = []
+    for t in data if isinstance(data, list) else []:
+        t = str(t).strip()
+        if t and t.lower() not in (x.lower() for x in out):
+            out.append(t)
+    return out
 BACKGROUND = (255, 246, 230)  # board cream, shows in empty cells
 
 
@@ -123,7 +139,8 @@ def thumbnail(path: Path):
         return ImageOps.fit(im, (CELL_W, CELL_H), Image.LANCZOS, centering=(0.5, 0.4))
 
 
-def build(avatars_dir: Path, images_dir: Path, out: Path):
+def build(avatars_dir: Path, images_dir: Path, out: Path, tags_file: Path):
+    TAGS[:] = load_tags(tags_file)
     entries = sort_entries(load_entries(avatars_dir, images_dir))
     capacity = PER_ATLAS * MAX_ATLASES
     if len(entries) > capacity:
@@ -145,6 +162,10 @@ def build(avatars_dir: Path, images_dir: Path, out: Path):
         e["atlas"], e["index"] = divmod(n, PER_ATLAS)
         avatars.append(e)
 
+    used_tags = [t for t in TAGS if any(t in a["tags"] for a in avatars)]
+    if len(used_tags) > MAX_WORLD_TAGS:
+        warn(f"{len(used_tags)} tags in use, the board shows the first {MAX_WORLD_TAGS}")
+
     catalog = {
         "version": 1,
         "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),
@@ -155,7 +176,8 @@ def build(avatars_dir: Path, images_dir: Path, out: Path):
         "cellHeight": CELL_H,
         "perAtlas": PER_ATLAS,
         "atlasCount": atlas_count,
-        "tags": TAGS,
+        # only tags that at least one avatar uses, in the order of tags.json
+        "tags": used_tags,
         "atlases": [atlas_url(i) for i in range(atlas_count)],
         "avatars": avatars,
     }
@@ -168,5 +190,6 @@ if __name__ == "__main__":
     ap.add_argument("--avatars", default="Avatars")
     ap.add_argument("--images", default="Images")
     ap.add_argument("--out", default="_site")
+    ap.add_argument("--tags", default="tags.json")
     a = ap.parse_args()
-    build(Path(a.avatars), Path(a.images), Path(a.out))
+    build(Path(a.avatars), Path(a.images), Path(a.out), Path(a.tags))
