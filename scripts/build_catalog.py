@@ -7,7 +7,7 @@
 - Output goes to <out>/avatars.json and <out>/atlas/atlas_XX.jpg.
 
 The atlas URLs are fixed (VRChat cannot build VRCUrls at runtime), so only the
-MAX_ATLASES predefined file names atlas_00 .. atlas_19 are ever produced.
+MAX_ATLASES predefined file names atlas_00 .. atlas_49 are ever produced.
 """
 import argparse
 import datetime as dt
@@ -22,7 +22,7 @@ from PIL import Image, ImageOps
 COLS, ROWS = 8, 8
 CELL_W, CELL_H = 256, 192
 PER_ATLAS = COLS * ROWS
-MAX_ATLASES = 20
+MAX_ATLASES = 50
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 AVATAR_ID = re.compile(r"^avtr_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 PLATFORMS = {"pc", "quest", "ios"}

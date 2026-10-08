@@ -33,7 +33,7 @@ Die generierten Dateien werden nicht committet, sondern direkt als GitHub-Pages-
 VRChat erlaubt keine zur Laufzeit erzeugten URLs, deshalb sind alle URLs vorab festgelegt:
 
 - Katalog: `https://wesliede.github.io/Avatar-Selector/avatars.json`
-- Atlanten (max. 20 × 64 = 1280 Avatare):
+- Atlanten (max. 50 × 64 = 3200 Avatare):
 
 ```
 https://wesliede.github.io/Avatar-Selector/atlas/atlas_00.jpg
@@ -56,6 +56,36 @@ https://wesliede.github.io/Avatar-Selector/atlas/atlas_16.jpg
 https://wesliede.github.io/Avatar-Selector/atlas/atlas_17.jpg
 https://wesliede.github.io/Avatar-Selector/atlas/atlas_18.jpg
 https://wesliede.github.io/Avatar-Selector/atlas/atlas_19.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_20.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_21.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_22.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_23.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_24.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_25.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_26.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_27.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_28.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_29.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_30.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_31.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_32.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_33.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_34.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_35.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_36.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_37.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_38.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_39.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_40.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_41.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_42.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_43.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_44.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_45.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_46.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_47.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_48.jpg
+https://wesliede.github.io/Avatar-Selector/atlas/atlas_49.jpg
 ```
 
 Es werden nur so viele Atlanten erzeugt (und in der Welt geladen), wie nötig sind: `atlasCount = ceil(count / 64)`.
